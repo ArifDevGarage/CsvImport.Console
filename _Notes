@@ -1,0 +1,40 @@
+How to extend (reusable part)
+
+To import another table:
+
+Create Xyz entity + EF mapping
+
+Create XyzCsvRow + XyzCsvMap
+
+Create XyzImportHandler : IImportHandler
+
+Register it in DI:
+
+services.AddScoped<IImportHandler, XyzImportHandler>();
+
+
+
+
+
+Practical notes (so you don’t get surprised)
+
+True DB-agnostic upsert is the hardest part because each DB has different syntax. The generic “find then update else insert” works everywhere but can be slow on big files.
+
+If you need high performance (millions of rows), you usually do:
+
+SQL Server: SqlBulkCopy
+
+PostgreSQL: COPY
+
+MySQL: LOAD DATA INFILE
+Those are fast but not portable. The handler pattern above lets you swap strategies per provider later.
+
+If you tell me your real CSV columns + target table schema (like your Cancel Tax upload records), I can adapt this template into:
+
+multiple import handlers (header-driven),
+
+per-column validation,
+
+error output CSV (invalid rows exported),
+
+and optional “upsert by unique key” rules that match your business keys.

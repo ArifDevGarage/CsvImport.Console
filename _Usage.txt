@@ -1,0 +1,26 @@
+7) Run it
+
+Example CSV customers.csv:
+
+Code,Name,Email
+C001,Arif,arif@example.com
+C002,Budi,budi@example.com
+
+
+Run:
+
+dotnet run -- --entity customer --file "C:\temp\customers.csv"
+
+//
+
+//
+
+'C:\Users\user\Documents\Z_Records\ExtEmployeeFromSinta_edited.csv'
+
+
+ dotnet run -- --entity user --file 'C:\Users\user\Documents\Z_Records\AspNetUsers_edited.csv'
+
+ dotnet run -- --entity extemployee --file 'C:\Users\user\Documents\Z_Records\ExtEmployeeFromSinta_edited.csv'
+
+dotnet run -- --entity role --file 'C:\Users\user\Documents\Z_Records\AspNetRoles_edited.csv'
+//
